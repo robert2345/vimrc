@@ -57,11 +57,11 @@ noremap <Leader>ri :call rtags#ReindexFile()<CR>
 "noremap <Leader>rv :call rtags#FindVirtuals()<CR>
 noremap <Leader>t :call rtags#FindRefsCallTree()<CR>
 
+let g:rtagsUseDefaultMappings = 0
 
 "Find all instances of word under curson in current package.
 noremap <Leader>f yiw:!git grep <C-R>0<CR>
 
-let g:rtagsUseDefaultMappings = 0
 
 
 "Start NERDTree automagically
@@ -83,13 +83,19 @@ set nowrap
 
 
 "Navigation settings.
+set winwidth=20
+set winminwidth=15
+set winwidth=100
+
 set winheight=6 "Make room for winminheight setting
 set winminheight=5 "windows min height. stack many windows efficiently.
 set winheight=999 "Make sure current window is maximized in height
+
+
 "next win and maximize
-nmap <C-J> <C-W>j"<C-W>_
+nmap <C-J> <C-W>j"
 "prev win and maximize
-nmap <C-K> <C-W>k"<C-W>_
+nmap <C-K> <C-W>k"
 
 "Similarly for moving left and right, but without maximizing
 nmap <c-h> <c-w>h"<c-w>
