@@ -22,6 +22,8 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+
+
 "Highlight active window by drawin a red line in column 80
 augroup BgHighlight
     autocmd!
@@ -52,7 +54,7 @@ noremap <Leader>gg :call rtags#JumpTo(g:SAME_WINDOW, { '--declaration-only' : ''
 "noremap <Leader>rn :call rtags#FindRefsByName(input("Pattern? ", "", "customlist,rtags#CompleteSymbols"))<CR>
 "noremap <Leader>rs :call rtags#FindSymbols(input("Pattern? ", "", "customlist,rtags#CompleteSymbols"))<CR>
 noremap <Leader>ri :call rtags#ReindexFile()<CR>
-"noremap <Leader>rl :call rtags#ProjectList()<CR>
+noremap <Leader>rl :call rtags#ProjectList()<CR>
 "noremap <Leader>rw :call rtags#RenameSymbolUnderCursor()<CR>
 "noremap <Leader>rv :call rtags#FindVirtuals()<CR>
 noremap <Leader>t :call rtags#FindRefsCallTree()<CR>
@@ -61,6 +63,15 @@ let g:rtagsUseDefaultMappings = 0
 
 "Find all instances of word under curson in current package.
 noremap <Leader>f yiw:!git grep <C-R>0<CR>
+
+"set makeprg=devtool build $PACKAGE
+"set makeef='ls -t ./oe-logs/log.do_compile* | head -1' "refer to the latest of the log files for compile task of this package.
+"set shellpipe=2>
+"set errorformat=%A%f:%l:\ %m,%C%m "Check this. Just copied from som java guide. Perhaps nog totally cool.
+"noremap <M-1> :w<CR>:set ch=5<CR>:!devtool build $PACKAGE<CR>
+"noremap <M-2> :cp<CR>
+"noremap <M-3> :cn<CR>
+"noremap <M-4> :cl<CR>
 
 
 
@@ -122,11 +133,14 @@ Plugin 'Valloric/YouCompleteMe'
 " Plugin 'shanesharper/vim-rtags'
 Plugin 'lyuts/vim-rtags'
 Plugin 'scrooloose/nerdtree'
-Plugin 'jeaye/color_coded'
+"Plugin 'jeaye/color_coded'
 
 "Colorscheme light and dar
 Plugin 'nightsense/simplifysimplify'
 Plugin 'fcpg/vim-farout'
+
+"Fuzzy file search
+"Plugin 'ctrlpvim/ctrlp.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
