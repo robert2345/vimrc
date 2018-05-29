@@ -112,7 +112,7 @@ nmap <C-K> <C-W>k"
 nmap <c-h> <c-w>h"<c-w>
 nmap <c-l> <c-w>l"<c-w>
 
-colorscheme industry
+colorscheme elflord
 
 filetype off
 
@@ -136,7 +136,7 @@ Plugin 'scrooloose/nerdtree'
 "Plugin 'jeaye/color_coded'
 
 "Colorscheme light and dar
-Plugin 'nightsense/simplifysimplify'
+"Plugin 'nightsense/simplifysimplify'
 Plugin 'fcpg/vim-farout'
 
 Plugin 'vim-scripts/DoxygenToolkit.vim'
