@@ -41,7 +41,7 @@ nnoremap <Leader>d :YcmDiags <CR>
 "nnoremap <Leader>g :YcmCompleter GoToDeclaration<CR>
 "nnoremap <Leader>gg :YcmCompleter GoToDefinition<CR>
 
-"noremap <Leader>ri :call rtags#SymbolInfo()<CR>
+noremap <Leader>i :call rtags#SymbolInfo()<CR>
 "noremap <Leader>g :call rtags#JumpTo()<CR>
 "noremap <Leader>rS :call rtags#JumpTo(" ")<CR>
 "noremap <Leader>rV :call rtags#JumpTo("vert")<CR>
@@ -58,14 +58,18 @@ noremap <Leader>rl :call rtags#ProjectList()<CR>
 "noremap <Leader>rv :call rtags#FindVirtuals()<CR>
 noremap <Leader>t :call rtags#FindRefsCallTree()<CR>
 
+"Yank and paste between vim sessions
+noremap <Leader>y "+y<CR>
+noremap <Leader>p "+p<CR>
+
 let g:rtagsUseDefaultMappings = 0
 
 "Find all instances of word under curson in current package.
-noremap <Leader>f yiw:!git grep <C-R>0<CR>
+noremap <Leader>f yiw:Ack! <C-R>0<CR>
 
 " Simplify compliling by using the make command and refer to the error file
-set makeprg=devtool\ build\ $PACKAGE
-set makeef=./oe-logs/log.do_compile "refer to the latest of the log files for compile task of this package.
+set makeprg=ffbuild\ --compile-only\ $PACKAGE
+set makeef=$LOG_PATH/log.do_compile "refer to the latest of the log files for compile task of this package.
 
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -91,6 +95,9 @@ set shiftwidth=4
 set expandtab
 
 set nowrap 
+
+"Set the status bar
+set laststatus=2 "Show the status bara regardless of number of open buffer
 
 
 "Navigation settings.
@@ -129,9 +136,13 @@ Plugin 'VundleVim/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
+
+"Supposedly this should result in good autocompletion alternatives
 Plugin 'Valloric/YouCompleteMe'
-" Plugin 'shanesharper/vim-rtags'
+
+"rtags use the compilation database that Bear generates, and rtags, to find stuff
 Plugin 'lyuts/vim-rtags'
+
 Plugin 'scrooloose/nerdtree'
 "Plugin 'jeaye/color_coded'
 
@@ -146,6 +157,12 @@ Plugin 'junegunn/vim-easy-align'
 
 "Fuzzy file search
 "Plugin 'ctrlpvim/ctrlp.vim'
+
+Plugin 'mileszs/ack.vim'
+
+"Nice preconfigured status line
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
