@@ -79,12 +79,6 @@ nmap ga <Plug>(EasyAlign)
 let g:easy_align_ignore_groups=['String']
 
 
-"Start NERDTree automagically
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-"Toggle NERDTree
-map <C-n> :NERDTreeFocus<CR>
-
 set backspace=2
 set number
 syntax on
@@ -111,13 +105,14 @@ set winheight=999 "Make sure current window is maximized in height
 
 
 "next win and maximize
-nmap <C-J> <C-W>j"
+nmap <C-J> <C-W>j
 "prev win and maximize
-nmap <C-K> <C-W>k"
+nmap <C-K> <C-W>k
 
-"Similarly for moving left and right, but without maximizing
-nmap <c-h> <c-w>h"<c-w>
-nmap <c-l> <c-w>l"<c-w>
+"Similarly for moving left and right
+nmap <c-h> <c-w>h
+nmap <c-l> <c-w>l
+
 
 colorscheme elflord
 
