@@ -23,10 +23,10 @@
 set nocompatible
 
 
-"Highlight active window by drawin a red line in column 80
+"Highlight active window by drawin a red line in column 81
 augroup BgHighlight
     autocmd!
-    autocmd WinEnter * set colorcolumn=80
+    autocmd WinEnter * set colorcolumn=81
     autocmd WinLeave * set colorcolumn=0
 augroup END
 
