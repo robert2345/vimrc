@@ -40,6 +40,7 @@ nnoremap <Leader>dd :YcmShowDetailedDiagnostic <CR>
 nnoremap <Leader>d :YcmDiags <CR>
 "nnoremap <Leader>g :YcmCompleter GoToDeclaration<CR>
 "nnoremap <Leader>gg :YcmCompleter GoToDefinition<CR>
+"
 
 noremap <Leader>i :call rtags#SymbolInfo()<CR>
 "noremap <Leader>g :call rtags#JumpTo()<CR>
@@ -54,7 +55,7 @@ noremap <Leader>gg :call rtags#JumpTo(g:SAME_WINDOW, { '--declaration-only' : ''
 "noremap <Leader>rs :call rtags#FindSymbols(input("Pattern? ", "", "customlist,rtags#CompleteSymbols"))<CR>
 noremap <Leader>ri :call rtags#ReindexFile()<CR>
 noremap <Leader>rl :call rtags#ProjectList()<CR>
-"noremap <Leader>rw :call rtags#RenameSymbolUnderCursor()<CR>
+noremap <Leader>rw :call rtags#RenameSymbolUnderCursor()<CR>
 "noremap <Leader>rv :call rtags#FindVirtuals()<CR>
 noremap <Leader>t :call rtags#FindRefsCallTree()<CR>
 
@@ -116,7 +117,7 @@ nmap <c-l> <c-w>l
 
 colorscheme elflord
 
-filetype off
+filetype on
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -133,7 +134,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 
 "Supposedly this should result in good autocompletion alternatives
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 
 "rtags use the compilation database that Bear generates, and rtags, to find stuff
 Plugin 'lyuts/vim-rtags'
@@ -151,7 +152,7 @@ Plugin 'vim-scripts/DoxygenToolkit.vim'
 Plugin 'junegunn/vim-easy-align'
 
 "Fuzzy file search
-"Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 Plugin 'mileszs/ack.vim'
 
