@@ -42,6 +42,8 @@ nnoremap <Leader>d :YcmDiags <CR>
 "nnoremap <Leader>gg :YcmCompleter GoToDefinition<CR>
 "
 
+" Use rtags for autocomplet
+set completefunc=RtagsCompleteFunc
 noremap <Leader>i :call rtags#SymbolInfo()<CR>
 "noremap <Leader>g :call rtags#JumpTo()<CR>
 "noremap <Leader>rS :call rtags#JumpTo(" ")<CR>
@@ -128,10 +130,10 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
+" This plug lets you do GIT stuff from within Vim
 Plugin 'tpope/vim-fugitive'
+
+Plugin 'tpope/vim-sleuth'
 
 "Supposedly this should result in good autocompletion alternatives
 "Plugin 'Valloric/YouCompleteMe'
