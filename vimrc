@@ -1,8 +1,8 @@
 "
 " Personal preference .vimrc file
-" Maintained by Vincent Driessen <vincent@datafox.nl>
 "
-" My personally preferred version of vim is the one with the "big" feature
+" The person I borrowed this from wrote:
+" personally preferred version of vim is the one with the "big" feature
 " set, in addition to the following configure options:
 "
 "     ./configure --with-features=BIG
@@ -31,6 +31,8 @@ augroup BgHighlight
 augroup END
 
 set showcmd
+
+set pastetoggle=<F3>
 
 "Use space as leader key
 let mapleader = " "
@@ -73,7 +75,27 @@ noremap <Leader>f yiw:Ack! <C-R>0<CR>
 " Simplify compliling by using the make command and refer to the error file
 set makeprg=ffbuild\ --compile-only\ $PACKAGE
 set makeef=$LOG_PATH/log.do_compile "refer to the latest of the log files for compile task of this package.
+"Put this first of the matches so that it overrides default c style. This is
+"how it will look when ninja has built the code since it referes from the
+"builddirectory as set up by meson.
+set errorformat^=../../../../../../workspace/sources/%*[^/]/%f:%l:%c:%m 
 
+"build and deploy. Try to make this return as soon as it has rebooted instead
+"of hanging
+noremap <Leader>b :!ffbuild $PACKAGE && ffbuild --deploy root@$AXIS_TARGET_IP $PACKAGE && ssh $AXIS_TARGET_IP systemctl reboot<CR>
+
+"build and deploy, then restart package
+noremap <Leader>z :!ffbuild $PACKAGE && ffbuild --deploy root@$AXIS_TARGET_IP $PACKAGE && ssh $AXIS_TARGET_IP systemct restart $PACKAGE<CR>
+
+"build and run check tests
+"noremap <Leader>v :!ffbuild -c $PACKAGE-unittest<CR>
+noremap <Leader>v :!ffbuild --sync-source -c $PACKAGE-unittest<CR>
+"noremap <Leader>v :!ffbuild --sync-source --checkmem $PACKAGE-unittest<CR>
+
+"test kernel module
+"noremap <Leader>m :!cd $BUILDDIR/workspace/sources/$PACKAGE/test/ ; ./test.sh -x "overlay scale dispatcher_dewarp freeze triggered_source"<CR>
+"noremap <Leader>m :!cd $BUILDDIR/workspace/sources/$PACKAGE/test/ ; ./test.sh -x "scale"<CR>
+noremap <Leader>m :!cd $BUILDDIR/workspace/sources/$PACKAGE/test/ ; ./test.sh -x "overlay"<CR>
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -86,7 +108,10 @@ set backspace=2
 set number
 syntax on
 
-set tabstop=4
+" These settings are probably overridden by the vim-sleuth plugin. The
+" tabstop=8 setting has effect on how tabs are represented if project uses
+" tabs for indent. This is cool.
+set tabstop=8
 set softtabstop=4
 set shiftwidth=4
 set expandtab
@@ -118,6 +143,11 @@ nmap <c-l> <c-w>l
 
 
 colorscheme elflord
+
+" enable spell checking"
+set spell spelllang=en_us
+" disable it cause it is annoying
+set nospell
 
 filetype on
 
@@ -177,3 +207,4 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> %s/\s\+$//e
